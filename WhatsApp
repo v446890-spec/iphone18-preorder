@@ -350,7 +350,7 @@ const GOOGLE_FORM =
   WhatsApp number including country code.
 
   Example:
-  919876543210
+  918750022750
 
   Do NOT put your personal number here if you don't
   want it publicly visible.
@@ -538,7 +538,7 @@ function openForm(){
 
 function whatsappSupport(){
 
-  if(WHATSAPP_NUMBER === "8750022750"){
+  if(WHATSAPP_NUMBER === "918750022750"){
 
     alert(
       "Please replace WHATSAPP_NUMBER in the code with your legitimate business/support number."
