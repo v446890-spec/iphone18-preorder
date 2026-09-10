@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>iPhone 18 Pre-Order</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:#f5f5f7;
+  color:#1d1d1f;
+}
+header{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+}
+header h1{margin:0;font-size:28px}
+.notice{
+  background:#fff;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
+}
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:30px 18px;
+}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+.card{
+  background:#fff;
+  border-radius:25px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+.phone{
+  height:220px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.phone-shape{
+  width:115px;
+  height:205px;
+  border-radius:28px;
+  background:linear-gradient(145deg,#222,#777);
+  position:relative;
+  box-shadow:0 12px 25px rgba(0,0,0,.25);
+}
+.camera{
+  position:absolute;
+  top:14px;
+  left:14px;
+  width:50px;
+  height:50px;
+  border-radius:14px;
+  background:#111;
+}
+.camera:after{
+  content:"";
+  position:absolute;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#666;
+  top:8px;
+  left:8px;
+  box-shadow:20px 0 #666,10px 20px #666;
+}
+select,input,textarea{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:15px;
+}
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:0;
+  border-radius:25px;
+  background:#0071e3;
+  color:white;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+button:hover{opacity:.9}
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:20;
+  padding:18px;
+  overflow:auto;
+}
+.modal-box{
+  max-width:520px;
+  margin:35px auto;
+  background:#fff;
+  border-radius:22px;
+  padding:25px;
+}
+.close{
+  float:right;
+  font-size:28px;
+  cursor:pointer;
+}
+.payment{
+  background:#f5f5f7;
+  padding:15px;
+  border-radius:12px;
+  margin-top:12px;
+}
+.payment label{
+  display:block;
+  margin:10px 0;
+}
+.payment input{
+  width:auto;
+}
+.small{
+  font-size:12px;
+  color:#666;
+  line-height:1.5;
+}
+.confirm{
+  display:none;
+  text-align:center;
+}
+.order-id{
+  font-size:22px;
+  font-weight:700;
+  margin:15px 0;
+}
+.whatsapp{
+  background:#25D366;
+}
+.whatsapp:hover{
+  background:#1da851;
+}
+.secondary{
+  background:#555;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>iPhone 18 Pre-Order</h1>
+</header>
+
+<div class="notice">
+  Independent store • Not affiliated with Apple
+</div>
+
+<div class="container">
+
+<div class="products">
+
+<!-- PRO -->
+<div class="card">
+
+<div class="phone">
+<div class="phone-shape">
+<div class="camera"></div>
+</div>
+</div>
+
+<h2>iPhone 18 Pro</h2>
+<p>Premium Pro model</p>
+
+<select id="proStorage">
+<option value="256 GB">256 GB</option>
+<option value="512 GB">512 GB</option>
+<option value="1 TB">1 TB</option>
+</select>
+
+<select id="proColor">
+<option value="Black">Black</option>
+<option value="Silver">Silver</option>
+<option value="Blue">Blue</option>
+<option value="Gold">Gold</option>
+</select>
+
+<button onclick="openOrder('iPhone 18 Pro')">
+Pre-Order
+</button>
+
+</div>
+
+
+<!-- PRO MAX -->
+<div class="card">
+
+<div class="phone">
+<div class="phone-shape">
+<div class="camera"></div>
+</div>
+</div>
+
+<h2>iPhone 18 Pro Max</h2>
+<p>Premium Pro Max model</p>
+
+<select id="maxStorage">
+<option value="256 GB">256 GB</option>
+<option value="512 GB">512 GB</option>
+<option value="1 TB">1 TB</option>
+</select>
+
+<select id="maxColor">
+<option value="Black">Black</option>
+<option value="Silver">Silver</option>
+<option value="Blue">Blue</option>
+<option value="Gold">Gold</option>
+</select>
+
+<button onclick="openOrder('iPhone 18 Pro Max')">
+Pre-Order
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- ORDER MODAL -->
+<div class="modal" id="orderModal">
+
+<div class="modal-box" id="orderBox">
+
+<span class="close" onclick="closeOrder()">×</span>
+
+<h2>Pre-Order Details</h2>
+
+<input id="name"
+type="text"
+placeholder="Full Name">
+
+<input id="mobile"
+type="tel"
+placeholder="Mobile Number"
+maxlength="10">
+
+<input id="address"
+type="text"
+placeholder="Delivery Address">
+
+<textarea id="note"
+placeholder="Order Note (optional)"
+rows="3"></textarea>
+
+
+<div class="payment">
+
+<b>Payment Method</b>
+
+<label>
+<input type="radio"
+name="payment"
+value="COD"
+checked>
+Cash on Delivery (COD)
+</label>
+
+<label>
+<input type="radio"
+name="payment"
+value="Online Payment">
+Online Payment
+</label>
+
+</div>
+
+
+<p class="small">
+For security, this website does not collect card numbers,
+CVV, OTP or UPI PIN. Online payments should use an authorized
+secure payment gateway.
+</p>
+
+<button onclick="continueOrder()">
+Continue to Order Form
+</button>
+
+</div>
+
+
+<!-- CONFIRMATION -->
+<div class="modal-box confirm" id="confirmation">
+
+<h2>Order Details Ready ✅</h2>
+
+<p>Your reference ID:</p>
+
+<div class="order-id" id="orderId"></div>
+
+<p>
+Please complete the Google Form submission to send your
+pre-order details.
+</p>
+
+<button onclick="openForm()">
+Open Google Form
+</button>
+
+<button class="whatsapp" onclick="whatsappSupport()">
+WhatsApp Support
+</button>
+
+<button class="secondary" onclick="closeOrder()">
+Close
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+let selectedProduct = "";
+let finalFormURL = "";
+let currentOrderID = "";
+
+
+/* Google Form */
+const GOOGLE_FORM =
+"https://docs.google.com/forms/d/e/1FAIpQLSdvWS2Qja4fEaSGCEI6rWAn2Q1nzvL-srNN8zg1aJ6PwMU_Ag/viewform";
+
+
+/*
+  IMPORTANT:
+  Replace this with your legitimate business/support
+  WhatsApp number including country code.
+
+  Example:
+  919876543210
+
+  Do NOT put your personal number here if you don't
+  want it publicly visible.
+*/
+const WHATSAPP_NUMBER = "918750022750";
+
+
+function generateOrderID(){
+
+  const now = new Date();
+
+  const date =
+    now.getFullYear().toString() +
+    String(now.getMonth()+1).padStart(2,"0") +
+    String(now.getDate()).padStart(2,"0");
+
+  const random =
+    Math.floor(1000 + Math.random()*9000);
+
+  return "PRE-" + date + "-" + random;
+}
+
+
+function openOrder(product){
+
+  selectedProduct = product;
+
+  document.getElementById("orderBox").style.display = "block";
+  document.getElementById("confirmation").style.display = "none";
+
+  document.getElementById("orderModal").style.display = "block";
+}
+
+
+function closeOrder(){
+
+  document.getElementById("orderModal").style.display = "none";
+}
+
+
+function continueOrder(){
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const mobile =
+    document.getElementById("mobile").value.trim();
+
+  const address =
+    document.getElementById("address").value.trim();
+
+  const note =
+    document.getElementById("note").value.trim();
+
+
+  if(!name || !mobile || !address){
+
+    alert(
+      "Please fill Name, Mobile Number and Delivery Address."
+    );
+
+    return;
+  }
+
+
+  if(!/^[0-9]{10}$/.test(mobile)){
+
+    alert("Please enter a valid 10-digit mobile number.");
+
+    return;
+  }
+
+
+  let storage;
+  let color;
+
+
+  if(selectedProduct === "iPhone 18 Pro"){
+
+    storage =
+      document.getElementById("proStorage").value;
+
+    color =
+      document.getElementById("proColor").value;
+
+  }else{
+
+    storage =
+      document.getElementById("maxStorage").value;
+
+    color =
+      document.getElementById("maxColor").value;
+  }
+
+
+  const payment =
+    document.querySelector(
+      'input[name="payment"]:checked'
+    ).value;
+
+
+  /*
+    Generate reference ID
+  */
+
+  currentOrderID = generateOrderID();
+
+
+  /*
+    Google Form fields
+  */
+
+  const params = new URLSearchParams();
+
+  params.set("entry.451968463", name);
+  params.set("entry.568710323", color);
+  params.set("entry.260952707", mobile);
+
+  params.set(
+    "entry.993888365",
+    "Option 1"
+  );
+
+  params.set(
+    "entry.1874415440",
+    selectedProduct
+  );
+
+  params.set(
+    "entry.953616090",
+    storage
+  );
+
+  params.set(
+    "entry.1521159560",
+    address
+  );
+
+  params.set(
+    "entry.635976249",
+    payment
+  );
+
+  params.set(
+    "entry.1153126740",
+    "Order ID: " +
+    currentOrderID +
+    (note ? " | " + note : "")
+  );
+
+
+  finalFormURL =
+    GOOGLE_FORM +
+    "?usp=pp_url&" +
+    params.toString();
+
+
+  /*
+    Show confirmation
+  */
+
+  document.getElementById("orderId").innerText =
+    currentOrderID;
+
+  document.getElementById("orderBox").style.display =
+    "none";
+
+  document.getElementById("confirmation").style.display =
+    "block";
+}
+
+
+function openForm(){
+
+  if(finalFormURL){
+
+    window.open(
+      finalFormURL,
+      "_blank"
+    );
+
+  }
+}
+
+
+function whatsappSupport(){
+
+  if(WHATSAPP_NUMBER === "8750022750"){
+
+    alert(
+      "Please replace WHATSAPP_NUMBER in the code with your legitimate business/support number."
+    );
+
+    return;
+  }
+
+
+  const message =
+    "Hello, I need help with my iPhone 18 pre-order. Reference ID: " +
+    currentOrderID;
+
+  const url =
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(url,"_blank");
+}
+
+</script>
+
+</body>
+</html>
