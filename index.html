@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>iPhone 18 Pre-Order Booking</title>
+<meta name="description" content="Independent iPhone 18 Pro and Pro Max pre-order booking demo.">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f7;color:#111}
+header{position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:blur(15px);z-index:5;border-bottom:1px solid #ddd}
+nav{max-width:1100px;margin:auto;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 18px}
+.logo{font-weight:700;font-size:20px}.badge{font-size:12px;color:#666}
+main{max-width:1100px;margin:auto;padding:50px 18px}.hero{text-align:center;padding:35px 0 55px}
+h1{font-size:clamp(38px,7vw,70px);margin:10px 0;letter-spacing:-3px}.hero p{font-size:19px;color:#666}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.card{background:white;border-radius:28px;padding:28px;box-shadow:0 8px 30px #0000000c}
+.product{min-height:470px;display:flex;flex-direction:column;justify-content:space-between}
+.phone{height:250px;border-radius:42px;background:linear-gradient(145deg,#222,#777);width:150px;margin:15px auto;box-shadow:inset -12px -12px 25px #0008,0 20px 40px #0002;position:relative}
+.camera{position:absolute;top:18px;left:18px;width:58px;height:58px;border-radius:18px;background:#111}
+.lens{width:16px;height:16px;border-radius:50%;background:#777;display:inline-block;margin:7px}
+h2{font-size:32px;margin:5px 0}.price{font-size:22px;margin:10px 0 20px}
+label{display:block;font-weight:600;margin:14px 0 7px}select,input{width:100%;padding:13px;border:1px solid #ccc;border-radius:12px;font-size:16px}
+button{width:100%;padding:15px;border:0;border-radius:14px;background:#111;color:white;font-size:16px;font-weight:700;cursor:pointer;margin-top:18px}
+button:hover{opacity:.86}.notice{font-size:13px;color:#666;line-height:1.5}.success{display:none;margin-top:18px;padding:15px;border-radius:14px;background:#e9f8ec;color:#176b2c}
+footer{text-align:center;padding:30px 18px;color:#666;font-size:13px}.modal{display:none;position:fixed;inset:0;background:#0008;z-index:10;padding:20px}.modalbox{background:white;max-width:520px;margin:7vh auto;padding:28px;border-radius:25px}
+.close{background:#eee;color:#111}.small{font-size:12px;color:#777}
+@media(max-width:760px){.grid{grid-template-columns:1fr}main{padding-top:25px}.hero{padding-bottom:30px}}
+</style>
+</head>
+<body>
+<header><nav><div class="logo">iPhone 18 Pre-Order</div><div class="badge">Independent store • Not affiliated with Apple</div></nav></header>
+<main>
+<section class="hero">
+<h1>iPhone 18</h1>
+<p>Choose your Pro model and reserve your pre-order.</p>
+</section>
+<section class="grid">
+<div class="card product">
+<div>
+<div class="phone"><div class="camera"><span class="lens"></span><span class="lens"></span><span class="lens"></span></div></div>
+<h2>iPhone 18 Pro</h2><div class="price">From ₹1,79,900</div>
+<label>Storage</label><select id="proStorage"><option value="179900">256GB — ₹1,79,900</option><option value="199900">512GB — ₹1,99,900</option><option value="239900">1TB — ₹2,39,900</option></select>
+<label>Colour</label><select id="proColor"><option>Silver</option><option>Space Black</option><option>Deep Blue</option></select>
+</div>
+<button onclick="openBooking('iPhone 18 Pro','proStorage','proColor')">Pre-Order Now</button>
+</div>
+<div class="card product">
+<div>
+<div class="phone" style="background:linear-gradient(145deg,#111,#555)"><div class="camera"><span class="lens"></span><span class="lens"></span><span class="lens"></span></div></div>
+<h2>iPhone 18 Pro Max</h2><div class="price">From ₹1,99,900</div>
+<label>Storage</label><select id="maxStorage"><option value="199900">256GB — ₹1,99,900</option><option value="219900">512GB — ₹2,19,900</option><option value="259900">1TB — ₹2,59,900</option></select>
+<label>Colour</label><select id="maxColor"><option>Silver</option><option>Space Black</option><option>Deep Blue</option></select>
+</div>
+<button onclick="openBooking('iPhone 18 Pro Max','maxStorage','maxColor')">Pre-Order Now</button>
+</div>
+</section>
+</main>
+<footer>
+This is an independent pre-order demo and is not the official Apple website. Product availability, pricing and launch dates should be verified before accepting real orders.
+</footer>
+
+<div class="modal" id="modal">
+<div class="modalbox">
+<h2>Pre-Order Details</h2>
+<p id="summary"></p>
+<form id="form">
+<label>Full name</label><input required id="name" autocomplete="name">
+<label>Mobile number</label><input required id="phoneInput" type="tel" pattern="[0-9]{10}" placeholder="10-digit mobile number">
+<label>Email</label><input required id="email" type="email" autocomplete="email">
+<p class="notice">For real payments, connect a PCI-compliant payment gateway. Do not collect or store card number, CVV or OTP on this site.</p>
+<button type="submit">Continue to Secure Payment</button>
+<button type="button" class="close" onclick="closeModal()">Cancel</button>
+</form>
+<div class="success" id="success"></div>
+</div></div>
+
+<script>
+let selected={};
+function openBooking(model,storageId,colorId){
+ const s=document.getElementById(storageId), c=document.getElementById(colorId);
+ selected={model,storage:s.value,storageText:s.options[s.selectedIndex].text,color:c.value};
+ document.getElementById('summary').textContent=`${model} • ${selected.storageText} • ${selected.color}`;
+ document.getElementById('modal').style.display='block';
+}
+function closeModal(){document.getElementById('modal').style.display='none'}
+document.getElementById('form').addEventListener('submit',function(e){
+ e.preventDefault();
+ document.getElementById('success').style.display='block';
+ document.getElementById('success').textContent='Demo booking created. Secure payment gateway is not connected yet.';
+});
+</script>
+</body>
+</html>
