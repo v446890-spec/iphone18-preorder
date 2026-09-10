@@ -1,0 +1,14 @@
+function whatsappSupport(){
+
+  const message =
+    "Hello, I need help with my iPhone 18 pre-order. Reference ID: " +
+    currentOrderID;
+
+  const url =
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(url, "_blank");
+}
