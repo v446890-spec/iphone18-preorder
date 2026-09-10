@@ -2,494 +2,249 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>iPhone 18 Pre-Order Store</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-}
-
+*{box-sizing:border-box}
 body{
-  background:#f5f5f7;
-  color:#1d1d1f;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f5f7;
+color:#1d1d1f
 }
-
-header{
-  background:rgba(255,255,255,.95);
-  padding:16px 20px;
-  text-align:center;
-  position:sticky;
-  top:0;
-  z-index:10;
-  border-bottom:1px solid #ddd;
-}
-
-.logo{
-  font-size:25px;
-  font-weight:700;
-}
-
 .notice{
-  background:#111;
-  color:white;
-  text-align:center;
-  padding:8px;
-  font-size:12px;
+background:#111;color:white;text-align:center;
+padding:9px;font-size:12px
 }
-
-.hero{
-  text-align:center;
-  padding:55px 20px 35px;
+header{
+background:white;text-align:center;padding:17px;
+font-size:24px;font-weight:bold;
+border-bottom:1px solid #ddd
 }
-
-.hero h1{
-  font-size:48px;
-  margin-bottom:10px;
-}
-
-.hero p{
-  color:#666;
-  font-size:18px;
-}
-
+.hero{text-align:center;padding:45px 15px 25px}
+.hero h1{font-size:45px;margin:0 0 10px}
+.hero p{color:#666;font-size:17px}
 .products{
-  max-width:1050px;
-  margin:auto;
-  padding:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:25px;
+max-width:950px;margin:auto;padding:20px;
+display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:22px
 }
-
 .card{
-  background:white;
-  border-radius:28px;
-  padding:30px;
-  text-align:center;
-  box-shadow:0 8px 30px rgba(0,0,0,.08);
+background:white;border-radius:25px;padding:30px;
+text-align:center;box-shadow:0 8px 25px #0001
 }
-
 .phone{
-  height:260px;
-  width:135px;
-  margin:10px auto 25px;
-  border-radius:35px;
-  background:linear-gradient(145deg,#222,#777);
-  border:7px solid #111;
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
-  position:relative;
+width:125px;height:245px;margin:5px auto 25px;
+border-radius:32px;background:linear-gradient(145deg,#222,#888);
+border:6px solid #111;position:relative
 }
-
 .phone:before{
-  content:"";
-  position:absolute;
-  width:45px;
-  height:13px;
-  background:#111;
-  border-radius:20px;
-  top:7px;
-  left:38px;
+content:"";position:absolute;top:8px;left:35px;
+width:43px;height:12px;background:#111;border-radius:15px
 }
-
-.card h2{
-  font-size:30px;
-  margin-bottom:8px;
-}
-
-.card p{
-  color:#666;
-  margin-bottom:12px;
-}
-
-.price{
-  font-size:22px;
-  font-weight:600;
-  margin:15px 0;
-}
-
+.card h2{font-size:28px}
+.price{font-size:20px;font-weight:bold;margin:18px}
 button{
-  border:0;
-  border-radius:25px;
-  padding:13px 24px;
-  font-size:16px;
-  cursor:pointer;
-  background:#0071e3;
-  color:white;
+border:0;border-radius:25px;padding:13px 25px;
+background:#0071e3;color:white;font-size:16px
 }
-
-button:hover{
-  opacity:.9;
-}
-
-footer{
-  text-align:center;
-  padding:35px 20px;
-  color:#777;
-  font-size:13px;
-}
-
-/* MODAL */
-
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:100;
-  padding:20px;
-  overflow:auto;
+display:none;position:fixed;inset:0;background:#0009;
+padding:20px;overflow:auto
 }
-
-.modal-box{
-  background:white;
-  max-width:520px;
-  margin:30px auto;
-  border-radius:25px;
-  padding:28px;
+.box{
+background:white;max-width:500px;margin:20px auto;
+padding:25px;border-radius:22px
 }
-
-.modal-box h2{
-  margin-bottom:20px;
-}
-
-label{
-  display:block;
-  margin-top:14px;
-  font-weight:600;
-}
-
+label{display:block;font-weight:bold;margin-top:13px}
 input,select,textarea{
-  width:100%;
-  padding:13px;
-  margin-top:7px;
-  border:1px solid #ccc;
-  border-radius:12px;
-  font-size:15px;
+width:100%;padding:12px;margin-top:6px;
+border:1px solid #ccc;border-radius:10px;font-size:15px
 }
-
-textarea{
-  min-height:80px;
-  resize:vertical;
-}
-
+textarea{height:80px}
 .payment{
-  margin-top:18px;
-  padding:15px;
-  background:#f5f5f7;
-  border-radius:15px;
+margin-top:18px;padding:15px;background:#f5f5f7;
+border-radius:12px
 }
-
-.payment label{
-  font-weight:500;
-  margin-top:8px;
+.payment label{font-weight:normal}
+.actions{display:flex;gap:10px;margin-top:20px}
+.cancel{background:#777}
+.success{text-align:center;display:none}
+.order{
+background:#eee;padding:12px;border-radius:10px;
+font-weight:bold;margin:15px 0
 }
-
-.actions{
-  display:flex;
-  gap:10px;
-  margin-top:22px;
-}
-
-.cancel{
-  background:#777;
-}
-
-.success{
-  display:none;
-  text-align:center;
-  padding:20px 5px;
-}
-
-.success h2{
-  color:#188038;
-  margin-bottom:12px;
-}
-
-.order-id{
-  background:#f1f1f1;
-  padding:12px;
-  border-radius:10px;
-  margin:15px 0;
-  font-weight:bold;
-}
-
-.small{
-  font-size:12px;
-  color:#777;
-  margin-top:12px;
-  line-height:1.5;
-}
+small{color:#666;line-height:1.5}
+footer{text-align:center;padding:35px;color:#777;font-size:12px}
 </style>
 </head>
 
 <body>
 
 <div class="notice">
-  Independent store • Not affiliated with Apple
+Independent store • Not affiliated with Apple
 </div>
 
-<header>
-  <div class="logo">iPhone 18 Store</div>
-</header>
+<header>iPhone 18 Store</header>
 
 <section class="hero">
-  <h1>iPhone 18</h1>
-  <p>Pre-order your preferred model.</p>
+<h1>iPhone 18</h1>
+<p>Pre-order your preferred model.</p>
 </section>
 
 <section class="products">
 
-  <div class="card">
-    <div class="phone"></div>
-    <h2>iPhone 18 Pro</h2>
-    <p>Pro performance. Premium design.</p>
-    <div class="price">Starting from ₹1,29,900</div>
-    <button onclick="openOrder('iPhone 18 Pro')">
-      Pre-order
-    </button>
-  </div>
+<div class="card">
+<div class="phone"></div>
+<h2>iPhone 18 Pro</h2>
+<p>Pro performance. Premium design.</p>
+<div class="price">₹1,29,900</div>
+<button onclick="openOrder('iPhone 18 Pro')">Pre-order</button>
+</div>
 
-  <div class="card">
-    <div class="phone"></div>
-    <h2>iPhone 18 Pro Max</h2>
-    <p>Our largest Pro experience.</p>
-    <div class="price">Starting from ₹1,49,900</div>
-    <button onclick="openOrder('iPhone 18 Pro Max')">
-      Pre-order
-    </button>
-  </div>
+<div class="card">
+<div class="phone"></div>
+<h2>iPhone 18 Pro Max</h2>
+<p>Our largest Pro experience.</p>
+<div class="price">₹1,49,900</div>
+<button onclick="openOrder('iPhone 18 Pro Max')">Pre-order</button>
+</div>
 
 </section>
 
 <footer>
-  © 2026 Independent iPhone 18 Store<br>
-  This website is an independent storefront and is not affiliated with Apple Inc.
+© 2026 Independent iPhone 18 Store<br>
+Not affiliated with Apple Inc.
 </footer>
 
+<div class="modal" id="modal">
+<div class="box">
 
-<!-- ORDER MODAL -->
+<div id="form">
 
-<div class="modal" id="orderModal">
+<h2>Complete Pre-order</h2>
 
-  <div class="modal-box">
+<label>Product</label>
+<input id="product" readonly>
 
-    <div id="orderForm">
+<label>Storage</label>
+<select id="storage">
+<option>256 GB</option>
+<option>512 GB</option>
+<option>1 TB</option>
+</select>
 
-      <h2>Complete Pre-order</h2>
+<label>Color</label>
+<select id="color">
+<option>Black</option>
+<option>Silver</option>
+<option>Blue</option>
+<option>Natural Titanium</option>
+</select>
 
-      <label>Product</label>
-      <input id="product" readonly>
+<label>Name</label>
+<input id="name" placeholder="Your name">
 
-      <label>Storage</label>
-      <select id="storage">
-        <option>256 GB</option>
-        <option>512 GB</option>
-        <option>1 TB</option>
-      </select>
+<label>Mobile Number</label>
+<input id="mobile" type="tel"
+maxlength="10" placeholder="10-digit mobile">
 
-      <label>Color</label>
-      <select id="color">
-        <option>Black</option>
-        <option>Silver</option>
-        <option>Blue</option>
-        <option>Natural Titanium</option>
-      </select>
+<label>Email</label>
+<input id="email" type="email"
+placeholder="Email address">
 
-      <label>Your Name</label>
-      <input id="name" type="text" placeholder="Enter your name">
+<label>Delivery Address</label>
+<textarea id="address"
+placeholder="Full delivery address"></textarea>
 
-      <label>Mobile Number</label>
-      <input id="mobile" type="tel"
-             placeholder="10-digit mobile number"
-             maxlength="10">
+<div class="payment">
+<b>Payment Method</b>
 
-      <label>Email</label>
-      <input id="email" type="email"
-             placeholder="your@email.com">
+<label>
+<input type="radio" name="pay" value="COD" checked>
+Cash on Delivery
+</label>
 
-      <label>Delivery Address</label>
-      <textarea id="address"
-        placeholder="House no., street, city, state, PIN"></textarea>
+<label>
+<input type="radio" name="pay" value="ONLINE">
+Secure Online Payment
+</label>
 
-      <div class="payment">
+<br>
+<small>
+Online payment must use an authorized hosted payment gateway.
+This demo does not collect card number, CVV, OTP or UPI PIN.
+</small>
+</div>
 
-        <strong>Payment Method</strong>
-
-        <label>
-          <input type="radio"
-                 name="payment"
-                 value="COD"
-                 checked>
-          Cash on Delivery
-        </label>
-
-        <label>
-          <input type="radio"
-                 name="payment"
-                 value="ONLINE">
-          Secure Online Payment
-        </label>
-
-        <p class="small">
-          Online payment should be completed only through an
-          authorized payment gateway/hosted checkout.
-          This demo does not collect card numbers, CVV,
-          OTP, UPI PIN or other payment credentials.
-        </p>
-
-      </div>
-
-      <div class="actions">
-        <button onclick="placeOrder()">Place Order</button>
-        <button class="cancel" onclick="closeOrder()">Cancel</button>
-      </div>
-
-    </div>
-
-
-    <div class="success" id="success">
-
-      <h2>✓ Order Submitted</h2>
-
-      <p>Your pre-order request has been created.</p>
-
-      <div class="order-id" id="orderId"></div>
-
-      <p id="paymentMessage"></p>
-
-      <button onclick="closeOrder()">
-        Done
-      </button>
-
-    </div>
-
-  </div>
+<div class="actions">
+<button onclick="placeOrder()">Place Order</button>
+<button class="cancel" onclick="closeOrder()">Cancel</button>
+</div>
 
 </div>
 
+<div class="success" id="success">
+<h2>✓ Order Submitted</h2>
+<p>Your pre-order request has been created.</p>
+<div class="order" id="order"></div>
+<p id="msg"></p>
+<button onclick="closeOrder()">Done</button>
+</div>
+
+</div>
+</div>
 
 <script>
-
-function openOrder(productName){
-
-  document.getElementById("product").value = productName;
-
-  document.getElementById("orderModal").style.display = "block";
-
-  document.getElementById("orderForm").style.display = "block";
-
-  document.getElementById("success").style.display = "none";
+function openOrder(p){
+document.getElementById("product").value=p;
+document.getElementById("modal").style.display="block";
+document.getElementById("form").style.display="block";
+document.getElementById("success").style.display="none";
 }
-
 
 function closeOrder(){
-
-  document.getElementById("orderModal").style.display = "none";
+document.getElementById("modal").style.display="none";
 }
-
 
 function placeOrder(){
 
-  const name =
-    document.getElementById("name").value.trim();
+let name=document.getElementById("name").value.trim();
+let mobile=document.getElementById("mobile").value.trim();
+let address=document.getElementById("address").value.trim();
 
-  const mobile =
-    document.getElementById("mobile").value.trim();
-
-  const email =
-    document.getElementById("email").value.trim();
-
-  const address =
-    document.getElementById("address").value.trim();
-
-  const product =
-    document.getElementById("product").value;
-
-  const storage =
-    document.getElementById("storage").value;
-
-  const color =
-    document.getElementById("color").value;
-
-  const payment =
-    document.querySelector(
-      'input[name="payment"]:checked'
-    ).value;
-
-
-  if(name === ""){
-    alert("Please enter your name.");
-    return;
-  }
-
-
-  if(!/^[0-9]{10}$/.test(mobile)){
-    alert("Please enter a valid 10-digit mobile number.");
-    return;
-  }
-
-
-  if(email !== "" &&
-     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-
-    alert("Please enter a valid email address.");
-    return;
-  }
-
-
-  if(address === ""){
-    alert("Please enter your delivery address.");
-    return;
-  }
-
-
-  const randomNumber =
-    Math.floor(100000 + Math.random() * 900000);
-
-  const orderNumber =
-    "RY18-" + randomNumber;
-
-
-  document.getElementById("orderId").innerText =
-    "Order ID: " + orderNumber;
-
-
-  if(payment === "COD"){
-
-    document.getElementById("paymentMessage").innerText =
-      "Payment method: Cash on Delivery";
-
-  }else{
-
-    document.getElementById("paymentMessage").innerText =
-      "Secure payment selected. Connect an authorized payment gateway hosted checkout before accepting real payments.";
-
-  }
-
-
-  document.getElementById("orderForm").style.display =
-    "none";
-
-  document.getElementById("success").style.display =
-    "block";
+if(!name){
+alert("Please enter your name.");
+return;
 }
 
+if(!/^[0-9]{10}$/.test(mobile)){
+alert("Please enter a valid 10-digit mobile number.");
+return;
+}
 
-window.onclick = function(event){
+if(!address){
+alert("Please enter delivery address.");
+return;
+}
 
-  const modal =
-    document.getElementById("orderModal");
+let id="RY18-"+Math.floor(100000+Math.random()*900000);
 
-  if(event.target === modal){
-    closeOrder();
-  }
+let payment=document.querySelector(
+'input[name="pay"]:checked').value;
 
-};
+document.getElementById("order").innerText=
+"Order ID: "+id;
 
+document.getElementById("msg").innerText=
+payment==="COD"
+?"Payment: Cash on Delivery"
+:"Secure payment selected — connect an authorized hosted gateway before accepting real payments.";
+
+document.getElementById("form").style.display="none";
+document.getElementById("success").style.display="block";
+}
 </script>
 
 </body>
