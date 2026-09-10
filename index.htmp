@@ -1,0 +1,7 @@
+<script>
+const FORM_URL = "PASTE_YOUR_GOOGLE_FORM_LINK_HERE";
+
+function openOrderForm() {
+  window.open(FORM_URL, "_blank");
+}
+</script>
