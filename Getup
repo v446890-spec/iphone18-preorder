@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iPhone 18 Pre-Order</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:#f5f5f7;
+  color:#1d1d1f;
+}
+header{
+  background:#000;
+  color:white;
+  text-align:center;
+  padding:18px;
+}
+header h1{margin:0;font-size:28px}
+.notice{
+  text-align:center;
+  font-size:13px;
+  padding:10px;
+  background:#fff;
+}
+.container{
+  max-width:1000px;
+  margin:35px auto;
+  padding:20px;
+}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+.card{
+  background:white;
+  border-radius:24px;
+  padding:28px;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+.phone{
+  height:230px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.phone-shape{
+  width:115px;
+  height:210px;
+  border-radius:28px;
+  background:linear-gradient(145deg,#202124,#777);
+  box-shadow:0 12px 25px rgba(0,0,0,.3);
+  position:relative;
+}
+.camera{
+  position:absolute;
+  top:15px;
+  left:15px;
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:#111;
+}
+.camera:after{
+  content:"";
+  position:absolute;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:#555;
+  top:8px;
+  left:8px;
+  box-shadow:20px 0 #555,10px 20px #555;
+}
+select,input,textarea{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:15px;
+}
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:0;
+  border-radius:25px;
+  background:#0071e3;
+  color:white;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+button:hover{background:#005bb5}
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:10;
+  padding:20px;
+  overflow:auto;
+}
+.modal-box{
+  max-width:520px;
+  background:white;
+  margin:40px auto;
+  padding:25px;
+  border-radius:22px;
+}
+.close{
+  float:right;
+  font-size:28px;
+  cursor:pointer;
+}
+.small{
+  font-size:12px;
+  color:#666;
+  line-height:1.5;
+}
+.payment{
+  margin-top:15px;
+  padding:15px;
+  background:#f5f5f7;
+  border-radius:12px;
+}
+.payment label{
+  display:block;
+  margin:10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>iPhone 18 Pre-Order</h1>
+</header>
+
+<div class="notice">
+  Independent store • Not affiliated with Apple
+</div>
+
+<div class="container">
+
+  <div class="products">
+
+    <!-- iPhone 18 Pro -->
+    <div class="card">
+      <div class="phone">
+        <div class="phone-shape">
+          <div class="camera"></div>
+        </div>
+      </div>
+
+      <h2>iPhone 18 Pro</h2>
+      <p>Premium Pro model</p>
+
+      <select id="proStorage">
+        <option value="256 GB">256 GB</option>
+        <option value="512 GB">512 GB</option>
+        <option value="1 TB">1 TB</option>
+      </select>
+
+      <select id="proColor">
+        <option value="Black">Black</option>
+        <option value="Silver">Silver</option>
+        <option value="Blue">Blue</option>
+        <option value="Gold">Gold</option>
+      </select>
+
+      <button onclick="openOrder('iPhone 18 Pro')">
+        Pre-Order
+      </button>
+    </div>
+
+
+    <!-- iPhone 18 Pro Max -->
+    <div class="card">
+      <div class="phone">
+        <div class="phone-shape">
+          <div class="camera"></div>
+        </div>
+      </div>
+
+      <h2>iPhone 18 Pro Max</h2>
+      <p>Premium Pro Max model</p>
+
+      <select id="maxStorage">
+        <option value="256 GB">256 GB</option>
+        <option value="512 GB">512 GB</option>
+        <option value="1 TB">1 TB</option>
+      </select>
+
+      <select id="maxColor">
+        <option value="Black">Black</option>
+        <option value="Silver">Silver</option>
+        <option value="Blue">Blue</option>
+        <option value="Gold">Gold</option>
+      </select>
+
+      <button onclick="openOrder('iPhone 18 Pro Max')">
+        Pre-Order
+      </button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ORDER MODAL -->
+<div class="modal" id="orderModal">
+
+  <div class="modal-box">
+
+    <span class="close" onclick="closeOrder()">×</span>
+
+    <h2>Pre-Order Details</h2>
+
+    <input id="name" type="text" placeholder="Full Name" required>
+
+    <input id="mobile" type="tel"
+           placeholder="Mobile Number"
+           maxlength="10"
+           required>
+
+    <input id="address" type="text"
+           placeholder="Delivery Address"
+           required>
+
+    <textarea id="note"
+              placeholder="Order Note (optional)"
+              rows="3"></textarea>
+
+    <div class="payment">
+
+      <b>Payment Method</b>
+
+      <label>
+        <input type="radio"
+               name="payment"
+               value="COD"
+               checked>
+        Cash on Delivery (COD)
+      </label>
+
+      <label>
+        <input type="radio"
+               name="payment"
+               value="Online Payment">
+        Online Payment
+      </label>
+
+    </div>
+
+    <p class="small">
+      Online payment will be handled through a secure authorized
+      payment gateway. This website does not collect card numbers,
+      CVV, OTP or UPI PIN.
+    </p>
+
+    <button onclick="continueOrder()">
+      Continue to Order Form
+    </button>
+
+  </div>
+</div>
+
+
+<script>
+
+let selectedProduct = "";
+
+
+/* Google Form */
+const GOOGLE_FORM =
+"https://docs.google.com/forms/d/e/1FAIpQLSdvWS2Qja4fEaSGCEI6rWAn2Q1nzvL-srNN8zg1aJ6PwMU_Ag/viewform";
+
+
+function openOrder(product){
+
+  selectedProduct = product;
+
+  document.getElementById("orderModal").style.display = "block";
+}
+
+
+function closeOrder(){
+
+  document.getElementById("orderModal").style.display = "none";
+}
+
+
+function continueOrder(){
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const mobile =
+    document.getElementById("mobile").value.trim();
+
+  const address =
+    document.getElementById("address").value.trim();
+
+  const note =
+    document.getElementById("note").value.trim();
+
+  if(!name || !mobile || !address){
+
+    alert("Please fill Name, Mobile Number and Delivery Address.");
+    return;
+  }
+
+  if(!/^[0-9]{10}$/.test(mobile)){
+
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+  }
+
+
+  let storage;
+  let color;
+
+  if(selectedProduct === "iPhone 18 Pro"){
+
+    storage =
+      document.getElementById("proStorage").value;
+
+    color =
+      document.getElementById("proColor").value;
+
+  }else{
+
+    storage =
+      document.getElementById("maxStorage").value;
+
+    color =
+      document.getElementById("maxColor").value;
+  }
+
+
+  const payment =
+    document.querySelector(
+      'input[name="payment"]:checked'
+    ).value;
+
+
+  /*
+   Google Form Entry IDs
+  */
+
+  const params = new URLSearchParams();
+
+  params.set("entry.451968463", name);
+  params.set("entry.568710323", color);
+  params.set("entry.260952707", mobile);
+
+  /*
+    This field was present in your
+    pre-filled link as "Option 1".
+    Keeping it as Option 1.
+  */
+  params.set("entry.993888365", "Option 1");
+
+  params.set("entry.1874415440", selectedProduct);
+  params.set("entry.953616090", storage);
+  params.set("entry.1521159560", address);
+  params.set("entry.635976249", payment);
+  params.set("entry.1153126740", note);
+
+
+  const finalURL =
+    GOOGLE_FORM + "?usp=pp_url&" + params.toString();
+
+
+  /*
+    Open Google Form
+  */
+
+  window.open(finalURL, "_blank");
+
+}
+
+</script>
+
+</body>
+</html>
